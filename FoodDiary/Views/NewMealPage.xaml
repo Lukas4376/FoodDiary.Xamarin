@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDiary.Views.NewMealPage"
+             Title="Adding meal">
+
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout Orientation="Vertical" Padding="30" Spacing="20">
+                <Frame HasShadow="False" CornerRadius="20" BackgroundColor="{StaticResource Primary}" BorderColor="DarkGray">
+                    <Grid>
+                        <Label Text="Name:" TextColor="White" FontSize="Medium" Grid.Row="0" Grid.Column="0"/>
+                        <Entry x:Name="Name"
+                           Text="{Binding Name}"  
+                           Keyboard="Default"  
+                           TextColor="White"
+                           Grid.Row="0" Grid.Column="1"/>
+                        <Label Text="Calories:" TextColor="White" FontSize="Medium" Grid.Row="1" Grid.Column="0"/>
+                        <Entry x:Name="Calories" 
+                           Text="{Binding Calories}"
+                           Keyboard="Numeric"
+                           TextColor="White"
+                           Grid.Row="1" Grid.Column="1"/>
+                        <Label Text="Protein:" TextColor="White" FontSize="Medium" Grid.Row="2" Grid.Column="0"/>
+                        <Entry x:Name="Protein" 
+                           Text="{Binding Protein}"
+                           Keyboard="Numeric"
+                           TextColor="White"
+                           Grid.Row="2" Grid.Column="1"/>
+                        <Label Text="Fat:" TextColor="White" FontSize="Medium" Grid.Row="3" Grid.Column="0"/>
+                        <Entry x:Name="Fat" 
+                           Text="{Binding Fat}"
+                           Keyboard="Numeric"
+                           TextColor="White"
+                           Grid.Row="3" Grid.Column="1"/>
+                        <Label Text="Carbohydrates:" TextColor="White" FontSize="Medium" Grid.Row="4" Grid.Column="0"/>
+                        <Entry x:Name="Carb" 
+                           Text="{Binding Carb}"
+                           Keyboard="Numeric"
+                           TextColor="White"
+                           Grid.Row="4" Grid.Column="1"/>
+                        <Label Text="Mass:" TextColor="White" FontSize="Medium" Grid.Row="5" Grid.Column="0"/>
+                        <Entry x:Name="MassOfPortion" 
+                           Text="{Binding MassOfPortion}"
+                           Keyboard="Numeric"
+                           TextColor="White"
+                           Grid.Row="5" Grid.Column="1"/>
+                        <Label Text="Amount:" TextColor="White" FontSize="Medium" Grid.Row="6" Grid.Column="0"/>
+                        <Entry x:Name="AmountOfPortions" 
+                           Text="{Binding AmountOfPortions}"
+                           Keyboard="Numeric"
+                           TextColor="White"
+                           Grid.Row="6" Grid.Column="1"/>
+                        <Label Text="Type:" TextColor="White" FontSize="Medium" Grid.Row="7" Grid.Column="0"/>
+                        <Picker x:Name="TypePicker" TextColor="White" SelectedIndex="{Binding Type}" HorizontalOptions="FillAndExpand" Grid.Row="7" Grid.Column="1">
+                            <Picker.Items>
+                                <x:String>Breakfast</x:String>
+                                <x:String>Lunch</x:String>
+                                <x:String>Dinner</x:String>
+                                <x:String>Snack</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </Grid>
+                </Frame>
+                <Button Command="{Binding AddCommand}" Text="Add" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium"  
+                    BackgroundColor="Gold" CornerRadius="20" BorderColor="#D2B100" BorderWidth="1" />
+                <Button Command="{Binding CancelCommand}" Text="Cancel" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium"
+                    BackgroundColor="Gainsboro" CornerRadius="20" BorderColor="DarkGray" BorderWidth="1"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

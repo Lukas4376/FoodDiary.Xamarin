@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:FoodDiary.ViewModels"
+             xmlns:model="clr-namespace:FoodDiary.Models" 
+             x:Class="FoodDiary.Views.WeightsPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddWeightCommand}" />
+    </ContentPage.ToolbarItems>
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <RefreshView x:DataType="local:WeightsViewModel" Command="{Binding LoadWeightsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Weights}"
+                SelectionMode="None"
+                EmptyView="No data">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="LightGray" Margin="0" Padding="15">
+                    <StackLayout Padding="0" x:DataType="model:Weight" Orientation="Horizontal">
+                            <Grid ColumnDefinitions="250">
+                                <Label  Grid.Row ="0" Grid.Column="0" Text="{Binding DateString}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListWeightTextStyle}" 
+                            FontSize="16" />
+                                <Label Grid.Row ="0" Grid.Column="1"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListWeightTextStyle}"
+                            FontSize="16">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} kg">
+                                            <Binding Path="Mass" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </Grid>
+                            <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:WeightsViewModel}}, Path=WeightTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
+    

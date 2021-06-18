@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDiary.Views.UpdateWeightPage"
+             Title="Weight details">
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout Orientation="Vertical" Padding="30" Spacing="20">
+                <Frame HasShadow="False" CornerRadius="20" BackgroundColor="{StaticResource Primary}" BorderColor="DarkGray">
+                    <Grid>
+                        <DatePicker 
+                            Date="{Binding Date}" 
+                            BackgroundColor="{StaticResource Primary}" 
+                            HorizontalOptions="FillAndExpand"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            Grid.Row="0" Grid.ColumnSpan="2"/>
+                        <Label Text="Mass [kg]:" TextColor="White" FontSize="Medium" Grid.Row="1" Grid.Column="0"/>
+                        <Entry x:Name="Mass"
+                           Text="{Binding Mass}"  
+                           Keyboard="Default"  
+                           TextColor="White"
+                           Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+                </Frame>
+                <Button Command="{Binding UpdateCommand}" Text="Update" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium"  
+                    BackgroundColor="Gold" CornerRadius="20" BorderColor="#D2B100" BorderWidth="1" />
+                <Button Command="{Binding DeleteCommand}" Text="Delete" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium"  
+                    BackgroundColor="Red" CornerRadius="20" BorderColor="DarkRed" BorderWidth="1" />
+                <Button Command="{Binding CancelCommand}" Text="Cancel" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium"
+                    BackgroundColor="Gainsboro" CornerRadius="20" BorderColor="DarkGray" BorderWidth="1"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

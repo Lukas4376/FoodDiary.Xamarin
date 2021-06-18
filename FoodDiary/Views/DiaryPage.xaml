@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDiary.Views.DiaryPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:FoodDiary.ViewModels"  
+             xmlns:model="clr-namespace:FoodDiary.Models" 
+             x:Name="BrowseMealsPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddMealCommand}" />
+    </ContentPage.ToolbarItems>
+    <StackLayout  Orientation="Vertical" Padding="0" Spacing="0">
+        <DatePicker 
+            Date="{Binding SelectedDate}" 
+            BackgroundColor="Gold" 
+            HorizontalOptions="FillAndExpand"
+            TextColor="White"
+            FontAttributes="Bold"/>
+        <Label Text="   Breakfast" BackgroundColor="{StaticResource Primary}" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
+        <RefreshView x:DataType="local:DiaryViewModel" Command="{Binding LoadMealsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="MealsBreakfastListView"
+                ItemsSource="{Binding MealsBreakfast}"
+                SelectionMode="None"
+                EmptyView="No meals">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" Margin="0" Padding="1">
+                            <StackLayout x:DataType="model:Meal" Padding="0" Spacing="0">
+                                <Grid ColumnDefinitions="300">
+                                    <Label Grid.Row ="0" Grid.Column="0" Text="{Binding Name}" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListMealTextStyle}" 
+                                        FontSize="16"
+                                        Margin="10,0,0,0"/>
+                                    <Label Grid.Row ="0" Grid.Column="1" Text="{Binding Calories, StringFormat='{0} kcal'}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListMealDetailTextStyle}"
+                                        FontSize="13" />
+                                    <Label Grid.Row ="1" Grid.Column="0" LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListMealDetailTextStyle}"
+                                        FontSize="13"
+                                        Margin="10,0,0,0">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} x {1} g">
+                                                <Binding Path="AmountOfPortions" />
+                                                <Binding Path="MassOfPortion" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:DiaryViewModel}}, Path=MealTapped}"		
+                                        CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <Label Text="   Lunch" BackgroundColor="{StaticResource Primary}" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
+        <RefreshView x:DataType="local:DiaryViewModel" Command="{Binding LoadMealsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="MealsLunchListView"
+                ItemsSource="{Binding MealsLunch}"
+                SelectionMode="None"
+                EmptyView="No meals">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" Margin="0" Padding="1">
+                            <StackLayout x:DataType="model:Meal" Padding="0" Spacing="0">
+                                <Grid ColumnDefinitions="300">
+                                    <Label Grid.Row ="0" Grid.Column="0" Text="{Binding Name}" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListMealTextStyle}" 
+                                        FontSize="16"
+                                        Margin="10,0,0,0"/>
+                                    <Label Grid.Row ="0" Grid.Column="1" Text="{Binding Calories, StringFormat='{0} kcal'}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListMealDetailTextStyle}"
+                                        FontSize="13" />
+                                    <Label Grid.Row ="1" Grid.Column="0" LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListMealDetailTextStyle}"
+                                        FontSize="13"
+                                        Margin="10,0,0,0">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} x {1} g">
+                                                <Binding Path="AmountOfPortions" />
+                                                <Binding Path="MassOfPortion" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:DiaryViewModel}}, Path=MealTapped}"		
+                                        CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <Label Text="   Dinner" BackgroundColor="{StaticResource Primary}" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
+        <RefreshView x:DataType="local:DiaryViewModel" Command="{Binding LoadMealsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="MealsDinnerListView"
+                ItemsSource="{Binding MealsDinner}"
+                SelectionMode="None"
+                EmptyView="No meals">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" Margin="0" Padding="1">
+                            <StackLayout x:DataType="model:Meal" Padding="0" Spacing="0">
+                                <Grid ColumnDefinitions="300">
+                                    <Label Grid.Row ="0" Grid.Column="0" Text="{Binding Name}" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListMealTextStyle}" 
+                                        FontSize="16"
+                                        Margin="10,0,0,0"/>
+                                    <Label Grid.Row ="0" Grid.Column="1" Text="{Binding Calories, StringFormat='{0} kcal'}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListMealDetailTextStyle}"
+                                        FontSize="13" />
+                                    <Label Grid.Row ="1" Grid.Column="0" LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListMealDetailTextStyle}"
+                                        FontSize="13"
+                                        Margin="10,0,0,0">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} x {1} g">
+                                                <Binding Path="AmountOfPortions" />
+                                                <Binding Path="MassOfPortion" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:DiaryViewModel}}, Path=MealTapped}"		
+                                        CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <Label Text="   Snacks" BackgroundColor="{StaticResource Primary}" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
+        <RefreshView x:DataType="local:DiaryViewModel" Command="{Binding LoadMealsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="MealsSnackListView"
+                ItemsSource="{Binding MealsSnack}"
+                SelectionMode="None"
+                EmptyView="No meals">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="LightGray" Margin="0" Padding="1">
+                            <StackLayout x:DataType="model:Meal" Padding="0" Spacing="0">
+                                <Grid ColumnDefinitions="300">
+                                    <Label Grid.Row ="0" Grid.Column="0" Text="{Binding Name}" 
+                                        LineBreakMode="NoWrap" 
+                                        Style="{DynamicResource ListMealTextStyle}" 
+                                        FontSize="16"
+                                        Margin="10,0,0,0"/>
+                                    <Label Grid.Row ="0" Grid.Column="1" Text="{Binding Calories, StringFormat='{0} kcal'}" 
+                                        LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListMealDetailTextStyle}"
+                                        FontSize="13" />
+                                    <Label Grid.Row ="1" Grid.Column="0" LineBreakMode="NoWrap"
+                                        Style="{DynamicResource ListMealDetailTextStyle}"
+                                        FontSize="13"
+                                        Margin="10,0,0,0">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} x {1} g">
+                                                <Binding Path="AmountOfPortions" />
+                                                <Binding Path="MassOfPortion" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                </Grid>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        NumberOfTapsRequired="1"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:DiaryViewModel}}, Path=MealTapped}"		
+                                        CommandParameter="{Binding .}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <Label Text="{Binding Summary}" BackgroundColor="{StaticResource Primary}" FontSize="Medium" TextColor="White" FontAttributes="Bold"></Label>
+    </StackLayout>
+</ContentPage>

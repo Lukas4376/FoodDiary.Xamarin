@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FoodDiary.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundImageSource="login_background.png" >
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="30" Spacing="20">
+                <Image Source="logo.png" VerticalOptions="Center" HeightRequest="192"/>
+            <Label Text="Food Diary App" TextColor="DarkGreen" FontSize="Title" FontAttributes="Bold,Italic" HorizontalTextAlignment="Center"/>
+            <Frame HasShadow="False" CornerRadius="20" BackgroundColor="{StaticResource Primary}" BorderColor="DarkGray">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="Username" Text="{Binding Username}" Placeholder="Username"   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="White"/>
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="Password"   
+                           PlaceholderColor="White" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="White"/>
+                </StackLayout>
+            </Frame>
+            <Button Command="{Binding LoginCommand}" Text="Login" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium"  
+                    BackgroundColor="Gold" CornerRadius="20" BorderColor="#D2B100" BorderWidth="1" />
+            <Button Command="{Binding RegisterCommand}" Text="Register now" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium"
+                    BackgroundColor="Gainsboro" CornerRadius="20" BorderColor="DarkGray" BorderWidth="1"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

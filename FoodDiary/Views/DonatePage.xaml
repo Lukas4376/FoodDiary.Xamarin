@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDiary.Views.DonatePage">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Padding="30" Spacing="20">
+                <Image Source="money.png" HeightRequest="200"></Image>
+                <Label Text="Donate our app!"
+                VerticalOptions="Center" 
+                HorizontalOptions="CenterAndExpand" 
+                Margin="0,0,0,50"
+                FontSize="Large"/>
+                <StackLayout>
+                    <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="False" Padding="0">
+                        <Entry Text="{Binding Amount}" Placeholder="Enter amount of donate in PLN" Keyboard="Numeric"></Entry>
+                    </Frame>
+                    <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="False" Padding="0">
+                        <Entry Text="{Binding CreditCardNumber}" Placeholder="Enter your credit card number" Keyboard="Numeric"></Entry>
+                    </Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="False" Padding="0" WidthRequest="50">
+                            <Entry Text="{Binding MM}" Placeholder="MM" HorizontalOptions="Center"></Entry>
+                        </Frame>
+                        <Label Text="/" FontSize="32"/>
+                        <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="False" Padding="0" WidthRequest="50">
+                            <Entry Text="{Binding YY}" Placeholder="YY" HorizontalOptions="Center"></Entry>
+                        </Frame>
+                        <Frame CornerRadius="10" BorderColor="LightGray" HasShadow="False" Padding="0" Margin="20,0,0,0">
+                            <Entry Text="{Binding CVV}" Placeholder="CVV" Keyboard="Numeric"></Entry>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+                <Button Command="{Binding DonateCommand}" Text="Donate!" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Medium"  
+                    BackgroundColor="Gold" CornerRadius="20" BorderColor="#D2B100" BorderWidth="1" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
